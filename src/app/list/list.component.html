@@ -3,20 +3,37 @@
   <div class="list mt-4">
     <div class="unselected mb-2">
       <h3>Available Provides</h3>
-      <div class="unselected-list" *ngFor="let provider of unselectedProviders" (click)="selectProvider(provider)">{{provider.name}}</div>
+      <ng-container *ngIf="unselectedProviders.length > 0; else noUnselectedProvider">
+        <div class="unselected-list" *ngFor="let provider of unselectedProviders" (click)="selectProvider(provider)">{{provider.name}}</div>
+      </ng-container>
+      <ng-template #noUnselectedProvider>
+        <div>
+          <p>No Providers Available</p>
+        </div>
+      </ng-template>
+      
+      
 
     </div>
     <div class="selected mb-2">
       <h3>Selected Providers</h3>
-      <div class="card" *ngFor="let selectedProvider of selectedProviders">
-        <div class="header">
-          <p>name: {{selectedProvider.name}}</p>
-          <p class="close" (click)="removeProvider(selectedProvider)">x</p>
+      <ng-container *ngIf="selectedProviders.length > 0; else noSelectedProvider">
+        <div class="card" *ngFor="let selectedProvider of selectedProviders else ">
+          <div class="header">
+            <p>Name: {{selectedProvider.name}}</p>
+            <p class="close" (click)="removeProvider(selectedProvider)">x</p>
+          </div>
+          <div class="body">
+            <p>Address: {{selectedProvider.address}}</p>
+            <p>Phone: {{selectedProvider.phone}}</p>
+          </div>
         </div>
-        <div class="body">
-          <p>address: {{selectedProvider.address}}</p>
-          <p>phone: {{selectedProvider.phone}}</p>
+      </ng-container>
+      <ng-template #noSelectedProvider>
+        <div>
+          <p>No Providers Selected</p>
         </div>
-      </div>
+      </ng-template>
+      
     </div>
   </div>

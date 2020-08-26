@@ -34,9 +34,18 @@ h2 {
 .card {
   width: 30rem;
   padding: 1.5rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 .card .header {
   display: flex;
   justify-content: space-between;
+}
+
+.card .close {
+  margin-top: -.5rem;
+ 
+}
+.card .close:hover {
+  color: #ff0000;
 }
